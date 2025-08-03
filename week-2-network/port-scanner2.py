@@ -1,0 +1,38 @@
+# simple yes/no if port is open
+# library for multithreading
+from concurrent.futures import ThreadPoolExecutor
+import socket
+
+# port check function, host = ip address, portToCheck is specific port to check
+def portCheck(host, portToCheck):
+    try:
+        scan = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        scan.settimeout(1) # timeout for connection attempts to prevent stuck
+        result = scan.connect_ex((host, portToCheck))
+        if result == 0:
+            print(f"Port {portToCheck} is open...")
+        scan.close() # close the socket stream
+    except socket.error:
+        pass # ignore connection error
+
+def main():
+
+    hostIP = input("IP? ")
+    port1 = int(input("Start port? "))
+    port2 = int(input("End port? "))
+
+    print(f"Scanning ports {port1} to {port2} on {hostIP}...")
+    
+    for port in range(port1, port2 + 1):
+        portCheck(hostIP, port)
+    
+    print("Scan complete!")
+
+
+# automatically call main
+if __name__ == "__main__":
+    main()
+
+
+
+
