@@ -20,11 +20,17 @@ def main():
     hostIP = input("IP? ")
     port1 = int(input("Start port? "))
     port2 = int(input("End port? "))
+    max_threads = 100
 
     print(f"Scanning ports {port1} to {port2} on {hostIP}...")
     
-    for port in range(port1, port2 + 1):
-        portCheck(hostIP, port)
+    # create thread pool (group of "workers" all doing the same task)
+    # with ensures closing of threads / clean up when done
+    # executor = task manager
+    with ThreadPoolExecutor(max_threads) as executor:
+        for port in range(port1, port2 + 1):
+            # adds to task queue; each thread receives the function portCheck with the arguments hostIP and port (which increments in for loop of range)
+            executor.submit(portCheck, hostIP, port)
     
     print("Scan complete!")
 
