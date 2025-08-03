@@ -11,6 +11,13 @@ def portCheck(host, portToCheck):
         result = scan.connect_ex((host, portToCheck))
         if result == 0:
             print(f"Port {portToCheck} is open...")
+            # send to get head, not all services auto send header ie. MySQL, DNS, HTTP, etc. 
+            scan.send(b"HEAD / HTTP/1.0\r\n\r\n")
+            # banner to receive specific service information (size 1024 bytes)
+            # method -> object
+            banner = scan.recv(1024)
+            # print the decoded message, remove whitespace with strip()
+            print(banner.decode().strip())
         scan.close() # close the socket stream
     except socket.error:
         pass # ignore connection error
