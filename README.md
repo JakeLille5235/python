@@ -6,7 +6,7 @@ The projects are designed to be small, focused, and practical — each one helps
 
 ---
 
-## 🔑 Goals
+## Goals
 - Sharpen Python fundamentals (data structures, loops, functions, OOP)
 - Explore **cybersecurity-related scripts** and tools
 - Build problem-solving habits and coding discipline
@@ -14,14 +14,14 @@ The projects are designed to be small, focused, and practical — each one helps
 
 ---
 
-## 📂 Project Examples
+## Project Examples
 - **Network tools** – simple scanners, packet analysis, socket programming  
 - **Automation scripts** – repetitive task automation to save time  
 - **Practice problems** – coding challenges that reinforce fundamentals  
 
 ---
 
-## 🚀 How to Run
+## How to Run
 Clone the repo and run any project with Python 3:
 
 ```bash
